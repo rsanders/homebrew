@@ -8,6 +8,7 @@ class Libsigsegv < Formula
   fails_with_llvm "Fails during configure with LLVM GCC from XCode 4 on Snow Leopard"
 
   def install
+    ENV.gcc_4_2
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
     system "make"

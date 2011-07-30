@@ -15,6 +15,7 @@ class Clisp < Formula
 
   def install
     ENV.j1 # This build isn't parallel safe.
+    ENV.gcc_4_2
 
     # Clisp requires to select word size explicitly this way,
     # set it in CFLAGS won't work.
@@ -35,9 +36,14 @@ class Clisp < Formula
 
       # The ulimit must be set, otherwise `make` will fail and tell you to do so
       system "ulimit -s 16384 && make"
+      
+      # work around build problem - from
+      #     http://comments.gmane.org/gmane.lisp.clisp.general/12789
+      system "cd linkkit && ln -s ../xthread.c . && cd .."
 
       # Considering the complexity of this package, a self-check is highly recommended.
       system "make check"
+      system "make install"
       system "make install"
     end
   end
