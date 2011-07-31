@@ -19,7 +19,7 @@ class PltRacket < Formula
       args = ["--disable-debug", "--disable-dependency-tracking",
               "--disable-places", "--disable-futures", # temporary, to force it to build on Mac OS X Lion DP3
               # "--enable-xonx",
-              "--disable-gracket"
+              "--disable-gracket",
               "--enable-shared",
               "--prefix=#{prefix}" ]
 
