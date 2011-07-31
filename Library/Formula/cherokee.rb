@@ -35,6 +35,7 @@ class Cherokee < Formula
                           "--prefix=#{prefix}",
                           "--sysconfdir=#{etc}",
                           "--localstatedir=#{var}/cherokee",
+                          "--with-wwwroot=/usr/local/var/cherokee/Documents",
                           "--with-wwwuser=#{ENV['USER']}",
                           "--with-wwwgroup=www"
     system "make install"
