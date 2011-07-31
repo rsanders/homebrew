@@ -7,8 +7,11 @@ class Imlib2 < Formula
 
   depends_on 'pkg-config' => :build
 
+  fails_with_llvm
+
   def install
     ENV.x11 # For freetype
+    ENV.gcc_4_2
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
                           "--enable-amd64=no"
