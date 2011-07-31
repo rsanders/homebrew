@@ -8,6 +8,8 @@ class ClozureCl < Formula
   md5 '290100fdb8dab3b9967ce8b688113199'
 
   def install
+    ENV.gcc_4_2
+
     # Get rid of all the .svn dirs, that for some reason are
     # included in the tarball
     Find.find(Dir.pwd) do |path|
