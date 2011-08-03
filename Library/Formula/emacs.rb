@@ -2,12 +2,8 @@ require 'formula'
 
 class Emacs < Formula
   url 'http://ftp.gnu.org/pub/gnu/emacs/emacs-23.3.tar.bz2'
-  md5 'a673c163b4714362b94ff6096e4d784a'
+  #md5 'a673c163b4714362b94ff6096e4d784a'
   homepage 'http://www.gnu.org/software/emacs/'
-
-  # Stripping on Xcode 4 causes malformed object errors
-  skip_clean "bin/emacs"
-  skip_clean "bin/emacs-23.3"
 
   if ARGV.include? "--use-git-head"
     head 'git://repo.or.cz/emacs.git'
@@ -18,6 +14,7 @@ class Emacs < Formula
   def options
     [
       ["--cocoa", "Build a Cocoa version of emacs"],
+      ["--lion", "Enable Lion full-screen mode"],
       ["--srgb", "Enable sRGB colors in the Cocoa version of emacs"],
       ["--with-x", "Include X11 support"],
       ["--use-git-head", "Use repo.or.cz git mirror for HEAD builds"],
@@ -30,11 +27,16 @@ class Emacs < Formula
     # Fix for building with Xcode 4; harmless on Xcode 3.x.
     unless ARGV.build_head?
       p << "http://repo.or.cz/w/emacs.git/commitdiff_plain/c8bba48c5889c4773c62a10f7c3d4383881f11c1"
+      p << "https://raw.github.com/gist/1098107"
     end
 
     if ARGV.include? "--cocoa"
       # Fullscreen patch, works against 23.3 and HEAD.
       p << "https://raw.github.com/gist/1012927"
+    end
+    
+    if ARGV.include? "--lion"
+      p << "https://raw.github.com/gist/1101856"
     end
 
     return p
@@ -116,3 +118,4 @@ class Emacs < Formula
     return s
   end
 end
+
