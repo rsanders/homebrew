@@ -34,7 +34,7 @@ class Emacs < Formula
       # Fullscreen patch, works against 23.3 and HEAD.
       p << "https://raw.github.com/gist/1012927"
     end
-    
+
     if ARGV.include? "--lion"
       p << "https://raw.github.com/gist/1101856"
     end
